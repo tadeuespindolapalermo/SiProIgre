@@ -28,7 +28,7 @@ public class UploadsBean implements Serializable {
 		String name = file.getFileName();
 		long size = file.getSize();
 		
-		String path = "/home/tadeu/eclipse-workspace/java-ee/SiProIgre/WebContent/WEB-INF/uploads";
+		String path = "/home/tadeu/eclipse-workspace/java-ee/SiProIgre/WebContent/uploads";
 		copyFileToDir(file, path);
 		
 		FacesMessage msg = new FacesMessage("O arquivo " + name + " foi enviado. Tamanho " + size + " bytes.");
@@ -39,7 +39,7 @@ public class UploadsBean implements Serializable {
 	
 	public void onUpload(FileUploadEvent event) {
 		UploadedFile uploadedFile = event.getFile();
-		String path = "/home/tadeu/eclipse-workspace/java-ee/SiProIgre/WebContent/WEB-INF/uploads";
+		String path = "/home/tadeu/eclipse-workspace/java-ee/SiProIgre/WebContent/uploads";
 		copyFileToDir(uploadedFile, path);
 		
 		String name = uploadedFile.getFileName();

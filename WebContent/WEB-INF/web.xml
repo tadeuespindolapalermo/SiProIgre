@@ -15,18 +15,26 @@
   </servlet-mapping>
   <context-param>
   	<param-name>primefaces.THEME</param-name>
-  	<!--<param-value>sunny</param-value>-->
+  	<param-value>sunny</param-value>
   	<!--<param-value>humanity</param-value>-->
   	<!--<param-value>dot-luv</param-value>-->
   	<!--><param-value>afternoon</param-value>-->
   	<!--<param-value>ui-lightness</param-value>-->
   	<!--<param-value>delta</param-value>-->
   	<!--<param-value>bootstrap</param-value>-->
-  	<param-value>flick</param-value>
+  	<!--<param-value>flick</param-value>-->
   	<!--<param-value>pepper-grinder</param-value>-->
   	<!--<param-value>hot-sneaks</param-value>-->
-  	<!--<param-value>home</param-value>-->
+  	<!--><param-value>home</param-value>-->
   	<!--<param-value>cruze</param-value>-->
+  	<!--<param-value>eggplant</param-value>-->
+  	<!--<param-value>smoothness</param-value>afterwork-->
+  	<!--<param-value>afterwork</param-value>-->
+  	<!--<param-value>cupertino</param-value>-->
+  	<!--<param-value>rocket</param-value>-->
+  	<!--><param-value>south-street</param-value>-->
+  	<!--<param-value>overcast</param-value>-->
+  	<!--<param-value>redmond</param-value>-->
   </context-param>
   <context-param>
     <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>

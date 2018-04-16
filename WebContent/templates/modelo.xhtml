@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>SiProIgre</title>
+	<h:outputStylesheet library="css" name="estilos.css" />
+</h:head>
+<h:body>
+	<p:growl id="mensagem" />
+
+	<div id="geral">
+
+		<div id="cabecalho" class="divCabecalho">
+			<h:form id="formMenu">
+				<p:menubar>
+					
+					<p:menuitem value="Home" url="index.faces"/>
+					
+					<p:submenu label="Administradores">
+						<p:menuitem value="Gerenciar Administradores" url="#" />
+						<p:menuitem value="Associar Usuário à Perfil" url="usuarios_perfis.faces" />
+					</p:submenu>
+
+					<p:submenu label="Usuários">
+						<p:menuitem value="Gerenciar Usuários" url="listar_usuarios.faces" />						
+					</p:submenu>
+
+					<p:submenu label="Perfis">
+						<p:menuitem value="Gerenciar Perfis" url="listar_perfis.faces" />
+					</p:submenu>
+
+					<p:submenu label="Letras">
+						<p:menuitem value="Gerenciar Lertras" url="listar_letras.faces" />
+					</p:submenu>
+					
+					<p:submenu label="Imagem">
+						<p:menuitem value="Gerenciar Imagens" url="#" />
+						<p:menuitem value="Upload de Imagens" url="upload_imagem.faces" />
+					</p:submenu>
+					
+					<p:submenu label="Projeção">
+						<p:menuitem value="Projetar Letras e Imagem" url="#" />						
+					</p:submenu>
+				</p:menubar>
+			</h:form>
+		</div>
+		
+		
+		<h1 style="text-align: center">SiProIgre - Sistema de Projeção de Igreja</h1>
+		
+		<div id="topo" class="divTopo">
+			<p:graphicImage library="images" name="banner.jpg"
+				styleClass="imagemCentralizada" />
+		</div>
+		<br />
+		<div id="conteudo">
+			<ui:insert name="conteudo" />
+		</div>		
+	</div>
+</h:body>
+</html>
