@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -12,40 +13,41 @@
 
 <body>
 
-<h:form>
-<h:inputHidden value="#{usuarios.alterar}" />
-<h:inputHidden value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
-<table border="1">
-	<tr>
-		<td colspan="2" align="center"><h3>Dados do Usuário</h3></td>
-	</tr>
-	<tr>
-		<td style="width: 120px;">CPF:</td>
-		<td style="width: 230px;"><b>
+	<h:form>
+	
+		<h:messages/>
+	
+		<h:inputHidden value="#{usuarios.alterar}" />
+		<h:inputHidden value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
+		
+		<h:panelGrid id="painel" columns="2">		
+		
+			<p:outputLabel for="cpf" value="CPF:" />
 			<h:outputText value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
-			<h:inputText value="#{usuarios.usuario.cpf}" rendered="#{!usuarios.alterar}" maxlength="11" required="true" />
-		</b></td>
-	</tr>
-	<tr>
-		<td style="width: 120px;">Nome:</td>
-		<td style="width: 230px;"><h:inputText value="#{usuarios.usuario.nome}" maxlength="50" required="true" /></td>
-	</tr>
-	<tr>
-		<td style="width: 120px;">Data Nascimento:</td>
-		<td style="width: 230px;">
-			<h:inputText value="#{usuarios.usuario.dataNascimento}" maxlength="10" required="true">
+			<p:inputMask id="cpf" mask="999.999.999-99" size="13" rendered="#{!usuarios.alterar}"
+				value="#{usuarios.usuario.cpf}" required="true"
+				requiredMessage="O campo 'CPF' é obrigatório" />				
+			
+			<p:outputLabel for="nome" value="Nome:" />
+			<p:inputText id="nome" maxlength="50" size="30"
+				value="#{usuarios.usuario.nome}" required="true"
+				requiredMessage="O campo 'Nome' é obrigatório" />	
+			
+			<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+			<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
+			maxlength="10" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório">
 				<f:convertDateTime pattern="dd/MM/yyyy" />
-			</h:inputText>
-		</td>
-	</tr>
-	<tr>
-		<td align="right" colspan="2">
-			<h:button value="Cancelar" outcome="listar_usuarios" />
-			<h:commandButton value="Gravar" action="#{usuarios.salvar}" />
-		</td>
-	</tr>
-</table>
-</h:form>
+			</p:inputText>		
+			
+		</h:panelGrid>
+	
+		<h:panelGrid columns="2">
+			<p:commandButton value="Salvar" action="#{usuarios.salvar()}"	/>
+			<p:button value="Cancelar" outcome="listar_usuarios" />
+		</h:panelGrid>
+		
+	</h:form>	
 
+	
 </body>
 </html>

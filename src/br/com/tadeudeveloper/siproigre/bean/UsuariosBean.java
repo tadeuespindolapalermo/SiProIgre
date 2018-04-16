@@ -14,10 +14,10 @@ import br.com.tadeudeveloper.siproigre.service.UsuarioService;
  */
 @Named("usuarios")
 @SessionScoped
-public class UsuariosBean extends AbstractBean {
+public class UsuariosBean extends AbstractBean {	
 	
-	private static final long serialVersionUID = 2192678360365896839L;
-	
+	private static final long serialVersionUID = -7480895540388668981L;
+
 	@Inject
 	private UsuarioService usuarioService;
 
@@ -88,7 +88,7 @@ public class UsuariosBean extends AbstractBean {
 	 * @return
 	 */
 	public String salvar() {
-		
+		System.out.println("OOOOOIIIIIIIIIIIIi");
 		System.out.println(usuario.getDataNascimento());
 		try {
 			if (alterar) {
@@ -99,7 +99,7 @@ public class UsuariosBean extends AbstractBean {
 			usuario = null;
 			usuarios = null;
 			alterar = false;
-			return "listar_usuarios?faces-redirect=true";
+			return "listar_usuarios?faces-redirect=true";			
 		} catch (Exception e) {
 			handleException(e);
 			return null;

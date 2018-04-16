@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
@@ -16,13 +17,13 @@
 
 <ul>
   <li><h:link value="Gerenciar Administradores" outcome="listar_administradores" /></li>
-  <li><h:link value="Gerenciar Usuários" outcome="listar_usuarios" /></li>
-  <li><h:link value="Gerenciar Perfis" outcome="listar_perfis" /></li>
-  <li><h:link value="Gerenciar Letras" outcome="listar_letras" /></li>
+  <li><p:link value="Gerenciar Usuários" outcome="listar_usuarios" /></li>
+  <li><p:link value="Gerenciar Perfis" outcome="listar_perfis" /></li>
+  <li><p:link value="Gerenciar Letras" outcome="listar_letras" /></li>
   <li><h:link value="Gerenciar Imagens" outcome="listar_imagens" /></li>
-  <li><h:link value="Upload de Imagens" outcome="upload_imagem" /></li>
+  <li><p:link value="Upload de Imagens" outcome="upload_imagem" /></li>
   <li><h:link value="Projetar Letras e Imagem" outcome="projetar_letras_imagem" /></li>
-  <li><h:link value="Associar Usuário a Perfil" outcome="usuarios_perfis" /></li>
+  <li><p:link value="Associar Usuário a Perfil" outcome="usuarios_perfis" /></li>
 </ul>
 
 </h:body>

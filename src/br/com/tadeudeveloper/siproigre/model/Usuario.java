@@ -17,8 +17,8 @@ public class Usuario {
 	 * CPF
 	 */
 	@Id
-	@Column(length = 11)
-	private String cpf;
+	@Column(length = 14)
+	private String cpf; 
 	
 	/**
 	 * Nome do usuário
