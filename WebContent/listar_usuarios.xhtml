@@ -8,8 +8,13 @@
 	template="/templates/modelo.xhtml">
 
 	<ui:define name="conteudo">	
-		<h:form id="form">
+		<h:form id="formUsuarios">
 			<p:panel header="Usuários - Listagem" style="text-align:center">
+			
+				<h:panelGroup rendered="#{usuarios.usuarios.size() == 0}">					
+					<p>Não existem usuários cadastrados!</p>					
+				</h:panelGroup>
+				
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
 				paginator="true" value="#{usuarios.usuarios}" var="usuario" rows="5">				
 				
@@ -28,11 +33,15 @@
 					<p:column headerText="Opções">
 						<h:commandLink value="Alterar" action="#{usuarios.alterar(usuario)}" />								|
 						<h:commandLink value="Excluir" action="#{usuarios.excluir(usuario)}" />
-					</p:column>					
+					</p:column>	
+									
 				</p:dataTable>				
 				<br />
 				<p:commandButton value="Inserir Usuário" action="#{usuarios.novoUsuario}" />
 			</p:panel>
-		</h:form>		
+		</h:form>	
+		<p>
+			<p:link value="Página Inicial" outcome="index" />
+		</p>	
 	</ui:define>
 </ui:composition>

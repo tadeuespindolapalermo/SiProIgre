@@ -8,7 +8,7 @@
 	template="/templates/modelo.xhtml">
 
 	<ui:define name="conteudo">	
-		<h:form>
+		<h:form id="formPerfil">
 			<p:panel header="Perfis - Listagem" style="text-align:center">
 			
 				<h:panelGroup rendered="#{perfis.perfis.size() == 0}">					
@@ -27,12 +27,15 @@
 					</p:column>									
 					
 					<p:column headerText="Opções">
-						<h:commandLink value="Alterar" action="#{perfis.alterar(perfil)}" />								|
-						<h:commandLink value="Excluir" action="#{perfis.excluir(perfil)}" />
+						<h:commandLink value="Alterar" action="#{perfis.alterar(p)}" />								|
+						<h:commandLink value="Excluir" action="#{perfis.excluir(p)}" />
 					</p:column>				
 				</p:dataTable><br/>				
 				<p:commandButton value="Inserir Perfil" action="#{perfis.novoPerfil}" />
 			</p:panel>
 		</h:form>
+		<p>
+			<p:link value="Página Inicial" outcome="index" />
+		</p>
 	</ui:define>
 </ui:composition>

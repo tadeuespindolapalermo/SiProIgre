@@ -1,52 +1,46 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/modelo.xhtml">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Gerenciamento de Letras</title>
-</h:head>
-
-<body>
-
-<h:form>
-<table border="1">
-	<tr>
-		<td colspan="4" align="center"><h3>Lista de Letras</h3></td>
-	</tr>
-	<tr>		
-		<th style="width: 320px;">Título</th>		
-		<th style="width: 250px;">Autor</th>
-		<th style="width: 500px;">Conteúdo</th>
-		<th style="width: 120px;">Opções</th>
-	</tr>
-	<h:panelGroup rendered="#{letras.letras.size() > 0}">
-		<ui:repeat value="#{letras.letras}" var="letra">
-			<tr>
-				<td align="center">#{letra.titulo}</td>
-				<td>#{letra.autor}</td>				
-				<td align="center">#{letra.conteudo}</td>
-				<td align="center">
-					<h:commandLink value="Alterar" action="#{letras.alterar(letra)}" />
-					|
-					<h:commandLink value="Excluir" action="#{letras.excluir(letra)}" />
-				</td>
-			</tr>
-		</ui:repeat>
-	</h:panelGroup>
-	<h:panelGroup rendered="#{letras.letras.size() == 0}">
-		<tr>
-			<td colspan="4" align="center">Não existem letras cadastradas</td>
-		</tr>
-	</h:panelGroup>
-</table>
-<h:commandButton value="Inserir Letra" action="#{letras.novaLetra}" />
-</h:form>
-<p>
-	<h:link value="Página Inicial" outcome="index" />
-</p>
-</body>
-</html>
+	<ui:define name="conteudo">
+		<h:form id="formLetras">
+			<p:panel header="Letras - Listagem" style="text-align:center">
+			
+				<h:panelGroup rendered="#{letras.letras.size() == 0}">					
+					<p>Não existem letras cadastradas!</p>					
+				</h:panelGroup>
+				
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{letras.letras}" var="letra" rows="5">				
+				    
+					<p:column headerText="Título">
+						<h:outputText value="#{letra.titulo}" />						
+					</p:column>
+		
+					<p:column headerText="Autor">
+						<h:outputText value="#{letra.autor}" />
+					</p:column>				
+		
+					<p:column headerText="Conteúdo">
+						<h:outputText value="#{letra.conteudo}" />
+					</p:column>			
+					
+					<p:column headerText="Opções">
+						<h:commandLink value="Alterar" action="#{letras.alterar(letra)}" />								|
+						<h:commandLink value="Excluir" action="#{letras.excluir(letra)}" />
+					</p:column>						
+				</p:dataTable>
+				<br />
+				<p:commandButton value="Inserir Letra" action="#{letras.novaLetra}" />
+			</p:panel>
+		</h:form>
+		<p>
+			<p:link value="Página Inicial" outcome="index" />
+		</p>
+	</ui:define>
+</ui:composition>
