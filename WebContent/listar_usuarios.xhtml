@@ -11,8 +11,7 @@
 		<h:form id="form">
 			<p:panel header="Usuários - Listagem" style="text-align:center">
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{usuarios.usuarios}" var="usuario" rows="5">
-				<!--<table border="1">-->
+				paginator="true" value="#{usuarios.usuarios}" var="usuario" rows="5">				
 				
 				    <p:column headerText="CPF">
 						<h:outputText value="#{usuario.cpf}" />						

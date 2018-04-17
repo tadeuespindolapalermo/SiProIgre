@@ -1,53 +1,45 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/modelo.xhtml">
 
-<h:head>
-	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-	<title>Gerenciamento de Usuários</title>
-</h:head>
-
-<body>
-
-	<h:form>
-	
-		<h:messages/>
-	
-		<h:inputHidden value="#{usuarios.alterar}" />
-		<h:inputHidden value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
+	<ui:define name="conteudo">
 		
-		<h:panelGrid id="painel" columns="2">		
+		<h:form style="margin-left: 530px;">			
 		
-			<p:outputLabel for="cpf" value="CPF:" />
-			<h:outputText value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
-			<p:inputMask id="cpf" mask="999.999.999-99" size="13" rendered="#{!usuarios.alterar}"
+			<h:inputHidden value="#{usuarios.alterar}" />
+			<h:inputHidden value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
+			
+			<h:panelGrid id="painel" columns="2">	
+			
+				<p:outputLabel for="nome" value="Nome:" />
+				<p:inputText id="nome" maxlength="50" size="25"
+				value="#{usuarios.usuario.nome}" required="true"
+				requiredMessage="O campo 'Nome' é obrigatório" />				
+				
+				<p:outputLabel for="cpf" value="CPF:" />
+				<h:outputText value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
+				<p:inputMask id="cpf" mask="999.999.999-99" size="11" rendered="#{!usuarios.alterar}"
 				value="#{usuarios.usuario.cpf}" required="true"
 				requiredMessage="O campo 'CPF' é obrigatório" />				
+				
+				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+				<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
+				maxlength="10" size="8" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório">
+					<f:convertDateTime pattern="dd/MM/yyyy" />
+				</p:inputText>		
+				
+			</h:panelGrid>
+			<br/>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar" action="#{usuarios.salvar()}"	/>
+				<p:button value="Cancelar" outcome="listar_usuarios" />
+			</h:panelGrid>
 			
-			<p:outputLabel for="nome" value="Nome:" />
-			<p:inputText id="nome" maxlength="50" size="30"
-				value="#{usuarios.usuario.nome}" required="true"
-				requiredMessage="O campo 'Nome' é obrigatório" />	
-			
-			<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
-			<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
-			maxlength="10" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório">
-				<f:convertDateTime pattern="dd/MM/yyyy" />
-			</p:inputText>		
-			
-		</h:panelGrid>
-	
-		<h:panelGrid columns="2">
-			<p:commandButton value="Salvar" action="#{usuarios.salvar()}"	/>
-			<p:button value="Cancelar" outcome="listar_usuarios" />
-		</h:panelGrid>
-		
-	</h:form>	
-
-	
-</body>
-</html>
+		</h:form>		
+	</ui:define>
+</ui:composition>
