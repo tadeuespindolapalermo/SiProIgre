@@ -87,8 +87,7 @@ public class UsuariosBean extends AbstractBean {
 	 * Cadastra ou atualiza um usuario (depende do estado da flag 'alterar')
 	 * @return
 	 */
-	public String salvar() {
-		System.out.println("OOOOOIIIIIIIIIIIIi");
+	public String salvar() {		
 		System.out.println(usuario.getDataNascimento());
 		try {
 			if (alterar) {

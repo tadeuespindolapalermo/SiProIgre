@@ -15,10 +15,10 @@
 		
 			<h:panelGrid id="painel" columns="2">	
 				
-				<p:outputLabel value="Perfil:" />
-				<p:selectOneMenu value="#{usuariosPerfis.perfilId}" onchange="submit()" valueChangeListener="#{usuariosPerfis.mudouPerfil}">
-					<f:selectItem noSelectionOption="true" />
-				    <f:selectItems value="#{usuariosPerfis.perfis}" var="p" itemValue="#{p.id}" itemLabel="#{p.nome}" />
+				<p:outputLabel for="p" value="Perfil:" />
+				<p:selectOneMenu id="p" requiredMessage="O campo 'Perfil' é obrigatório"  value="#{usuariosPerfis.perfilId}" onchange="submit()" valueChangeListener="#{usuariosPerfis.mudouPerfil}" filter="true">
+					<f:selectItem noSelectionOption="true" itemLabel="Selecione um perfil" />
+				    <f:selectItems value="#{usuariosPerfis.perfis}" var="perfil" itemValue="#{perfil.id}" itemLabel="#{perfil.nome}" />
 				</p:selectOneMenu>
 				
 				<p:outputLabel value="Usuários:" />
@@ -30,7 +30,7 @@
 			
 			</h:panelGrid>
 			<p>
-				<h:link value="Página Inicial" outcome="index" />
+				<p:link value="Página Inicial" outcome="index" />
 			</p>
 		</h:form>
 	</ui:define>

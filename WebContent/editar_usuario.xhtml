@@ -16,16 +16,16 @@
 			
 			<h:panelGrid id="painel" columns="2">	
 			
-				<p:outputLabel for="nome" value="Nome:" />
-				<p:inputText id="nome" maxlength="50" size="25"
-				value="#{usuarios.usuario.nome}" required="true"
-				requiredMessage="O campo 'Nome' é obrigatório" />				
-				
 				<p:outputLabel for="cpf" value="CPF:" />
 				<h:outputText value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
 				<p:inputMask id="cpf" mask="999.999.999-99" size="11" rendered="#{!usuarios.alterar}"
 				value="#{usuarios.usuario.cpf}" required="true"
-				requiredMessage="O campo 'CPF' é obrigatório" />				
+				requiredMessage="O campo 'CPF' é obrigatório" />	
+			
+				<p:outputLabel for="nome" value="Nome:" />
+				<p:inputText id="nome" maxlength="50" size="25"
+				value="#{usuarios.usuario.nome}" required="true"
+				requiredMessage="O campo 'Nome' é obrigatório" />								
 				
 				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
 				<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
