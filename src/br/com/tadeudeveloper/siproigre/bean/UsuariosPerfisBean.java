@@ -53,7 +53,7 @@ public class UsuariosPerfisBean extends AbstractBean {
 			usuariosSelecionados = new String[usuariosPerfil.size()];
 			int i = 0;
 			for (Usuario usuario : usuariosPerfil) {
-				usuariosSelecionados[i++] = usuario.getCpf().toString();
+				usuariosSelecionados[i++] = usuario.getCpf();
 			}
 
 			this.perfilId = perfilId;

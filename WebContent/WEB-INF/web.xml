@@ -15,7 +15,7 @@
   </servlet-mapping>
   <context-param>
   	<param-name>primefaces.THEME</param-name>
-  	<!--<param-value>sunny</param-value>-->
+  	<param-value>sunny</param-value>
   	<!--<param-value>humanity</param-value>-->
   	<!--<param-value>dot-luv</param-value>-->
   	<!--<param-value>afternoon</param-value>-->
@@ -35,7 +35,7 @@
   	<!--<param-value>south-street</param-value>-->
   	<!--<param-value>overcast</param-value>-->
   	<!--<param-value>redmond</param-value>-->
-  	<param-value>vader</param-value>
+  	<!--<param-value>vader</param-value>-->
   </context-param>
   <context-param>
     <description>State saving method: 'client' or 'server' (=default). See JSF Specification 2.5.2</description>
