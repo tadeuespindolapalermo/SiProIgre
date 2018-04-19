@@ -79,7 +79,7 @@ public class UsuariosPerfisBean extends AbstractBean {
 			usuarios = null;
 			perfilId = null;
 			usuariosSelecionados = null;
-			return "index";
+			return "home";
 		} catch (Exception e) {
 			handleException(e);
 			return null;

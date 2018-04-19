@@ -32,6 +32,20 @@ public class Usuario {
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
 	
+
+	/**
+	 * Nome do usuário para login
+	 */
+	@Column(length = 50, nullable = false)
+	private String login;
+	
+
+	/**
+	 * Senha do usuário
+	 */
+	@Column(length = 50, nullable = false)
+	private String senha;
+	
 	/**
 	 * ID do perfil onde o usuário está associado
 	 */
@@ -68,6 +82,22 @@ public class Usuario {
 
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+	
+	public String getSenha() {
+		return senha;
+	}
+	
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+	
+	public String getLogin() {
+		return login;
+	}
+	
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	@Override

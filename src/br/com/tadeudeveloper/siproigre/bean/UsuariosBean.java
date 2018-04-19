@@ -122,6 +122,6 @@ public class UsuariosBean extends AbstractBean {
 
 	public void setAlterar(boolean alterar) {
 		this.alterar = alterar;
-	}
+	}	
 
 }

@@ -25,8 +25,18 @@
 				<p:outputLabel for="nome" value="Nome:" />
 				<p:inputText id="nome" maxlength="50" size="25"
 				value="#{usuarios.usuario.nome}" required="true"
-				requiredMessage="O campo 'Nome' é obrigatório" />								
+				requiredMessage="O campo 'Nome' é obrigatório" />	
 				
+				<p:outputLabel for="login" value="Login:" />
+				<p:inputText id="login" maxlength="50" size="25"
+				value="#{usuarios.usuario.login}" required="true"
+				requiredMessage="O campo 'Login' é obrigatório" />				
+				
+				<p:outputLabel for="senha" value="Senha:" />
+				<p:password id="senha" maxlength="50" size="25"
+				value="#{usuarios.usuario.senha}" required="true"
+				requiredMessage="O campo 'Senha' é obrigatório" />	
+			
 				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
 				<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
 				maxlength="10" size="8" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório">

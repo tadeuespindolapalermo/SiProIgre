@@ -24,6 +24,14 @@
 		
 					<p:column headerText="Nome">
 						<h:outputText value="#{usuario.nome}" />
+					</p:column>	
+					
+					<p:column headerText="Usuário">
+						<h:outputText value="#{usuario.login}" />
+					</p:column>	
+					
+					<p:column headerText="Senha">
+						<h:outputText value="#{usuario.senha}" />
 					</p:column>				
 		
 					<p:column headerText="Data de Nascimento">
@@ -41,7 +49,7 @@
 			</p:panel>
 		</h:form>	
 		<p>
-			<p:link value="Página Inicial" outcome="index" />
+			<p:link value="Página Inicial" outcome="home" />
 		</p>	
 	</ui:define>
 </ui:composition>
