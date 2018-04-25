@@ -11,13 +11,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Usuario {
+public class Usuario {	
 
 	/**
 	 * CPF
-	 */
+	 */	
 	@Id
-	@Column(length = 14)
+	@Column(length = 14, nullable = false, unique = true) // 14 caracteres com máscara
 	private String cpf; 
 	
 	/**
@@ -30,27 +30,35 @@ public class Usuario {
 	 * Data de nascimento
 	 */
 	@Temporal(TemporalType.DATE)
+	@Column(nullable = false)
 	private Date dataNascimento;
 	
 
 	/**
 	 * Nome do usuário para login
 	 */
-	@Column(length = 50, nullable = false)
+	@Column(length = 30, nullable = false, unique = true)
 	private String login;
 	
 
 	/**
 	 * Senha do usuário
 	 */
-	@Column(length = 50, nullable = false)
+	@Column(length = 8, nullable = false) // apenas 8 caracteres
 	private String senha;
 	
+	/**
+	 * Telefone do usuário
+	 */
+	@Column(length = 16, nullable = false)
+	private String telefone;
+	
+		
 	/**
 	 * ID do perfil onde o usuário está associado
 	 */
 	@ManyToOne
-	private Perfil perfil;
+	private Perfil perfil;	
 
 	public String getCpf() {
 		return cpf;
@@ -58,6 +66,14 @@ public class Usuario {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+	
+	public String getTelefone() {
+		return telefone;
+	}
+	
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
 	}
 
 	public String getNome() {

@@ -33,5 +33,6 @@ public class UsuarioDAO extends DAO {
 	public List<Usuario> obterUsuariosPerfil(Integer perfilId) {
 		Query q = criarQuery("SELECT u FROM Usuario u WHERE u.perfil.id = " + perfilId);
 		return q.getResultList();
-	}
+	}	
+	
 }

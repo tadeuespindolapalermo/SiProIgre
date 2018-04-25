@@ -35,7 +35,7 @@ public class UsuariosPerfisBean extends AbstractBean {
 
 	private Integer perfilId;
 
-	private String[] usuariosSelecionados;
+	private String[] usuariosSelecionados;	
 
 	/**
 	 * Evento disparado quando a caixa de seleção de perfil tem seu valor alterado

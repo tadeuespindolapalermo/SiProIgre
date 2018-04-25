@@ -24,8 +24,8 @@ public class Perfil {
 	/**
 	 * Nível de acesso que o perfil considera
 	 */
-	@Column(nullable = false)
-	private Integer nivelAcesso;
+	@Column(length = 50, nullable = false)
+	private String descricao;
 
 	public void setId(Integer id) {
 		this.id = id;
@@ -43,16 +43,16 @@ public class Perfil {
 		this.nome = nome;
 	}
 
-	public Integer getNivelAcesso() {
-		return nivelAcesso;
+	public String getDescricao() {
+		return descricao;
 	}
-
-	public void setNivelAcesso(Integer nivelAcesso) {
-		this.nivelAcesso = nivelAcesso;
+	
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
 	public String toString() {
-		return "Perfil [id=" + id + ", nome=" + nome + ", nivelAcesso=" + nivelAcesso + "]";
+		return "Perfil [id=" + id + ", nome=" + nome + ", descrição=" + descricao + "]";
 	}
 }

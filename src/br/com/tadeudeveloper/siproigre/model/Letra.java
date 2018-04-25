@@ -12,10 +12,10 @@ public class Letra {
 	@GeneratedValue
 	private Integer id;
 	
-	@Column(length = 100, nullable = false)
+	@Column(length = 70, nullable = false)
 	private String titulo;
 	
-	@Column(length = 70, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String autor;
 	
 	@Column(length = 5000, nullable = false)

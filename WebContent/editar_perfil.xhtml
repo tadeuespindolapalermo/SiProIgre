@@ -9,7 +9,7 @@
 
 	<ui:define name="conteudo">
 
-		<h:form style="margin-left: 530px;">		
+		<h:form id="form" style="margin-left: 530px;">		
 		
 			<h:inputHidden value="#{perfis.alterar}" />
 			<h:inputHidden value="#{perfis.perfil.id}" />
@@ -17,19 +17,19 @@
 			<h:panelGrid id="painel" columns="2">							
 				
 				<p:outputLabel for="nome" value="Nome:" />
-				<p:inputText id="nome" maxlength="50" size="15"
+				<p:inputText id="nome" maxlength="20" size="15" placeholder="Até 20 caracteres"
 				value="#{perfis.perfil.nome}" required="true"
 				requiredMessage="O campo 'Nome' é obrigatório" />	
 					
-				<p:outputLabel for="nivelAcesso" value="Nível de Acesso:" />
-				<p:inputText id="nivelAcesso" maxlength="50" size="5"
-				value="#{perfis.perfil.nivelAcesso}" required="true"
-				requiredMessage="O campo 'Nível de Acesso' é obrigatório" />			
+				<p:outputLabel for="descricao" value="Descrição:" />
+				<p:inputText id="descricao" maxlength="50" size="15" placeholder="Até 50 caracteres"
+				value="#{perfis.perfil.descricao}" required="true"
+				requiredMessage="O campo 'Descrição' é obrigatório" />			
 			
 			</h:panelGrid>			
 			<br/>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" action="#{perfis.salvar}"	/>
+				<p:commandButton value="Salvar" action="#{perfis.salvar}" update=":mensagem :form"	/>
 				<p:button value="Cancelar" outcome="listar_perfis" />
 			</h:panelGrid>
 		</h:form>

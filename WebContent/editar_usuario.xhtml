@@ -9,44 +9,48 @@
 
 	<ui:define name="conteudo">
 		
-		<h:form style="margin-left: 530px;">			
+		<h:form id="form" style="margin-left: 530px;">				
 		
 			<h:inputHidden value="#{usuarios.alterar}" />
 			<h:inputHidden value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
 			
-			<h:panelGrid id="painel" columns="2">	
+			<h:panelGrid id="painel" columns="1">							
 			
 				<p:outputLabel for="cpf" value="CPF:" />
 				<h:outputText value="#{usuarios.usuario.cpf}" rendered="#{usuarios.alterar}" />
-				<p:inputMask id="cpf" mask="999.999.999-99" size="11" rendered="#{!usuarios.alterar}"
-				value="#{usuarios.usuario.cpf}" required="true"
-				requiredMessage="O campo 'CPF' é obrigatório" />	
+				<p:inputMask id="cpf" mask="999.999.999-99" size="11" rendered="#{!usuarios.alterar}" placeholder="999.999.999-99"
+				value="#{usuarios.usuario.cpf}" required="true" requiredMessage="O campo 'CPF' é obrigatório" />				
 			
-				<p:outputLabel for="nome" value="Nome:" />
-				<p:inputText id="nome" maxlength="50" size="25"
+				<p:outputLabel for="nome" value="Nome:"/>
+				<p:inputText id="nome" maxlength="50" size="25" placeholder="Até 50 caracteres"
 				value="#{usuarios.usuario.nome}" required="true"
-				requiredMessage="O campo 'Nome' é obrigatório" />	
+				requiredMessage="O campo 'Nome' é obrigatório" />
+				
+				<p:outputLabel for="telefone" value="Telefone:"/>
+				<p:inputMask id="telefone" maxlength="50" size="25" placeholder="(99) 9 9999-9999"
+				value="#{usuarios.usuario.telefone}" required="true" mask="(99) 9 9999-9999"
+				requiredMessage="O campo 'Telefone' é obrigatório" />					
 				
 				<p:outputLabel for="login" value="Login:" />
-				<p:inputText id="login" maxlength="50" size="25"
+				<p:inputText id="login" maxlength="30" size="25" placeholder="Até 30 caracteres"
 				value="#{usuarios.usuario.login}" required="true"
 				requiredMessage="O campo 'Login' é obrigatório" />				
 				
 				<p:outputLabel for="senha" value="Senha:" />
-				<p:password id="senha" maxlength="50" size="25"
+				<p:password id="senha" maxlength="8" size="25" placeholder="Até 8 caracteres"
 				value="#{usuarios.usuario.senha}" required="true"
 				requiredMessage="O campo 'Senha' é obrigatório" />	
 			
 				<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
-				<p:inputText id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" 
-				maxlength="10" size="8" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório">
-					<f:convertDateTime pattern="dd/MM/yyyy" />
-				</p:inputText>		
+				<p:inputMask id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" placeholder="99/99/9999" 
+				maxlength="10" size="8" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório" mask="99/99/9999">					
+					<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+				</p:inputMask>						
 				
 			</h:panelGrid>
 			<br/>
 			<h:panelGrid columns="2">
-				<p:commandButton value="Salvar" action="#{usuarios.salvar()}"	/>
+				<p:commandButton value="Salvar" action="#{usuarios.salvar()}" update=":mensagem :form"	/>
 				<p:button value="Cancelar" outcome="listar_usuarios" />
 			</h:panelGrid>
 			

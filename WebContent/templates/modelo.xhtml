@@ -8,10 +8,10 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>SiProIgre</title>
-	<h:outputStylesheet library="css" name="estilos.css" />
+	<h:outputStylesheet library="css" name="estilos.css" />	
 </h:head>
 <h:body>
-	<p:growl id="mensagem" />
+	<p:growl id="mensagem" sticky="true" showDetail="false" life="3000" />
 
 	<div id="geral">
 
@@ -30,7 +30,7 @@
 						<p:menuitem value="Gerenciar Usuários" url="listar_usuarios.faces" />						
 					</p:submenu>
 
-					<p:submenu label="Perfis">
+					<p:submenu label="Perfis de Usuário">
 						<p:menuitem value="Gerenciar Perfis" url="listar_perfis.faces" />
 					</p:submenu>
 

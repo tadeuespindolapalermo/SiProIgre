@@ -15,7 +15,7 @@ public class LoginBean extends UsuariosBean {
 	private static final long serialVersionUID = -2803405610586260650L;		
 	
 	public String logar() {
-		if (getUsuario().getLogin().equals("aaa") && getUsuario().getSenha().equals("123")) {			
+		if (getUsuario().getLogin().equals("admin") && getUsuario().getSenha().equals("admin")) {			
 			return "home?faces-redirect=true";
 		} else {
 			Messages.addGlobalError("Login ou senha inválido(s)!");
