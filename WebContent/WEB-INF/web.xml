@@ -50,4 +50,16 @@
     <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
     <param-value>true</param-value>
   </context-param>
+  
+  <!-- Bloquear acessos à páginas XHTML -->
+  <security-constraint>
+    <display-name>Bloquear XHTML</display-name>
+    <web-resource-collection>
+      <web-resource-name>XHTML</web-resource-name>
+      <url-pattern>*.xhtml</url-pattern>
+    </web-resource-collection>
+    <!-- Acesso à ninguém de recursos terminados com xhtml -->
+    <auth-constraint />
+  </security-constraint>
+  
 </web-app>

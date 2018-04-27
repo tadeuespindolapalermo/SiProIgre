@@ -25,7 +25,7 @@ public class UsuariosBean extends AbstractBean {
 
 	private Usuario usuario;
 
-	private boolean alterar;
+	private boolean alterar;	
 
 	/**
 	 * Obtém a lista de usuarios
