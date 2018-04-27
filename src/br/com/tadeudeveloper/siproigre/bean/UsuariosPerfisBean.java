@@ -5,6 +5,7 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.NavigationHandler;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ComponentSystemEvent;
 import javax.faces.event.ValueChangeEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -116,6 +117,16 @@ public class UsuariosPerfisBean extends AbstractBean {
 			handleException(e);
 			return null;
 		}
+	}
+	
+	/**
+	 * Obtém todos os usuarios e perfis cadastrados no banco de dados para os dados serem renderizados
+	 * logo na abertura da página usuarios_perfis.
+	 * @return Lista de usuarios e perfis
+	 */
+	public void carregarDados(ComponentSystemEvent event) {
+		this.usuarios = usuarioService.listarUsuarios();
+		this.perfis = perfilService.listarPerfis();
 	}
 
 	public void setUsuarios(List<Usuario> usuarios) {
