@@ -17,9 +17,31 @@ public class LoginBean extends UsuariosBean {
 	
 	private boolean logado;
 	
+	private String loginEfetuado;
+	
 	public LoginBean() {
 		this.logado = false;
 	}		
+	
+	public String logar() {
+		if (getUsuario().getLogin().equals("user") && getUsuario().getSenha().equals("user")) {
+			setLogado(true);
+			setLoginEfetuado("user");
+			return "home?faces-redirect=true";
+		} else if (getUsuario().getLogin().equals("admin") && getUsuario().getSenha().equals("admin")) {
+			setLogado(true);
+			setLoginEfetuado("admin");
+			return "home?faces-redirect=true";
+		} else {
+			Messages.addGlobalError("Login ou senha inválido(s)!");
+			return null;
+		}
+	}
+	
+	public String deslogar(ComponentSystemEvent event) {
+		setLogado(false);
+		return "login?faces-redirect=true";
+	}
 	
 	public boolean isLogado() {
 		return logado;
@@ -29,19 +51,12 @@ public class LoginBean extends UsuariosBean {
 		this.logado = logado;
 	}
 	
-	public String logar() {
-		if (getUsuario().getLogin().equals("admin") && getUsuario().getSenha().equals("admin")) {
-			setLogado(true);
-			return "home?faces-redirect=true";
-		} else {
-			Messages.addGlobalError("Login ou senha inválido(s)!");
-			return null;
-		}		
+	public String getLoginEfetuado() {
+		return loginEfetuado;
 	}
 	
-	public String deslogar(ComponentSystemEvent event) {
-		setLogado(false);
-		return "login?faces-redirect=true";
+	public void setLoginEfetuado(String loginEfetuado) {
+		this.loginEfetuado = loginEfetuado;
 	}
 
 }

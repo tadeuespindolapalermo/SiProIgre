@@ -19,7 +19,7 @@ public class UsuariosBean extends AbstractBean {
 	private static final long serialVersionUID = -7480895540388668981L;
 
 	@Inject
-	private UsuarioService usuarioService;
+	private UsuarioService usuarioService;	
 
 	private List<Usuario> usuarios;
 
@@ -122,6 +122,6 @@ public class UsuariosBean extends AbstractBean {
 
 	public void setAlterar(boolean alterar) {
 		this.alterar = alterar;
-	}	
+	}		
 
 }

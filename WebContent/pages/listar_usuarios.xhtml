@@ -43,13 +43,13 @@
 					</p:column>			
 					
 					<p:column headerText="Opções">
-						<h:commandLink value="Alterar" action="#{usuarios.alterar(usuario)}" />								|
-						<h:commandLink value="Excluir" action="#{usuarios.excluir(usuario)}" />
+						<h:commandLink value="Alterar" action="#{usuarios.alterar(usuario)}" disabled="#{login.loginEfetuado.equals('user')}" />								|
+						<h:commandLink value="Excluir" action="#{usuarios.excluir(usuario)}" disabled="#{login.loginEfetuado.equals('user')}" />
 					</p:column>	
 									
 				</p:dataTable>				
 				<br />
-				<p:commandButton value="Inserir Usuário" action="#{usuarios.novoUsuario}" />
+				<p:commandButton value="Inserir Usuário" action="#{usuarios.novoUsuario}" disabled="#{login.loginEfetuado.equals('user')}" />
 			</p:panel>
 		</h:form>	
 		<p>

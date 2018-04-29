@@ -11,7 +11,6 @@
 			<property name="hibernate.format_sql" value="true" />
 			<property name="hibernate.hbm2ddl.auto" value="none" />
 			<property name="eclipselink.ddl-generation.output-mode" value="database"/>
-			<property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
 		</properties>
 	</persistence-unit>
 </persistence>
