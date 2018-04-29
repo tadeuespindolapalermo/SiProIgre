@@ -8,48 +8,48 @@
 	template="/templates/modelo.xhtml">
 
 	<ui:define name="conteudo">	
-		<h:form id="formUsuarios">
-			<p:panel header="Usuários - Listagem" style="text-align:center">
+		<h:form id="formAdministradores">
+			<p:panel header="Administradores - Listagem" style="text-align:center">
 			
-				<h:panelGroup rendered="#{usuarios.usuarios.size() == 0}">					
-					<p>Não existe usuários cadastrados!</p>					
+				<h:panelGroup rendered="#{administradores.administradores.size() == 0}">					
+					<p>Não existe administradores cadastrados!</p>					
 				</h:panelGroup>
 				
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{usuarios.usuarios}" var="usuario" rows="5">				
+				paginator="true" value="#{administradores.administradores}" var="adm" rows="5">				
 				
 				    <p:column headerText="CPF">
-						<h:outputText value="#{usuario.cpf}" />						
+						<h:outputText value="#{adm.cpf}" />						
 					</p:column>
 		
 					<p:column headerText="Nome">
-						<h:outputText value="#{usuario.nome}" />
+						<h:outputText value="#{adm.nome}" />
 					</p:column>	
 					
 					<p:column headerText="Login">
-						<h:outputText value="#{usuario.login}" />
+						<h:outputText value="#{adm.login}" />
 					</p:column>	
 					
 					<p:column headerText="Telefone">
-						<h:outputText value="#{usuario.telefone}" />
+						<h:outputText value="#{adm.telefone}" />
 					</p:column>	
 					
 					<p:column headerText="Senha">
-						<h:outputText value="#{usuario.senha}" />
+						<h:outputText value="#{adm.senha}" />
 					</p:column>				
 		
 					<p:column headerText="Data de Nascimento">
-						<h:outputText value="#{usuario.dataNascimento}" />
+						<h:outputText value="#{adm.dataNascimento}" />
 					</p:column>			
 					
 					<p:column headerText="Opções">
-						<h:commandLink value="Alterar" action="#{usuarios.alterar(usuario)}" />								|
-						<h:commandLink value="Excluir" action="#{usuarios.excluir(usuario)}" />
+						<h:commandLink value="Alterar" action="#{administradores.alterar(adm)}" />								|
+						<h:commandLink value="Excluir" action="#{administradores.excluir(adm)}" />
 					</p:column>	
 									
 				</p:dataTable>				
 				<br />
-				<p:commandButton value="Inserir Usuário" action="#{usuarios.novoUsuario}" />
+				<p:commandButton value="Inserir Administrador" action="#{administradores.novoAdministrador}" />
 			</p:panel>
 		</h:form>	
 		<p>
