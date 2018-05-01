@@ -10,7 +10,10 @@
 	<ui:define name="conteudo">
 
 		<h:form enctype="multipart/form-data">
-			<p:fileUpload mode="advanced" fileUploadListener="#{uploadsBean.onUpload}" update="messages" multiple="true" auto="false" />
+			<p:fileUpload mode="advanced" fileUploadListener="#{uploadsBean.onUpload}" 
+			update="messages" multiple="true" auto="false" 
+			label="Escolher" uploadLabel="Enviar" cancelLabel="Cancelar"
+			fileLimit="5" fileLimitMessage="Só é possível escolher 5 arquivos por vez." />
 			
 			<p:growl id="messages" />
 		</h:form>

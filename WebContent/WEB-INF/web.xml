@@ -15,14 +15,14 @@
   </servlet-mapping>
   <context-param>
   	<param-name>primefaces.THEME</param-name>
-  	<param-value>sunny</param-value>
+  	<!--><param-value>sunny</param-value>-->
   	<!--<param-value>humanity</param-value>-->
   	<!--<param-value>dot-luv</param-value>-->
-  	<!--<param-value>afternoon</param-value>-->
+  	<param-value>afternoon</param-value>
   	<!--<param-value>ui-lightness</param-value>-->
   	<!--<param-value>delta</param-value>-->
   	<!--<param-value>bootstrap</param-value>-->
-  	<!--<param-value>flick</param-value>-->
+  	<!--><param-value>flick</param-value>-->
   	<!--<param-value>pepper-grinder</param-value>-->
   	<!--<param-value>hot-sneaks</param-value>-->
   	<!--<param-value>home</param-value>-->
