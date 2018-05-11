@@ -18,10 +18,10 @@
   	<!--><param-value>sunny</param-value>-->
   	<!--<param-value>humanity</param-value>-->
   	<!--<param-value>dot-luv</param-value>-->
-  	<param-value>afternoon</param-value>
+  	<!--><param-value>afternoon</param-value>-->
   	<!--<param-value>ui-lightness</param-value>-->
   	<!--<param-value>delta</param-value>-->
-  	<!--<param-value>bootstrap</param-value>-->
+  	<param-value>bootstrap</param-value>
   	<!--><param-value>flick</param-value>-->
   	<!--<param-value>pepper-grinder</param-value>-->
   	<!--<param-value>hot-sneaks</param-value>-->
@@ -61,5 +61,17 @@
     <!-- Acesso à ninguém de recursos terminados com xhtml -->
     <auth-constraint />
   </security-constraint>
+  
+  <!-- Definição do Mecanismo de Upload -->
+	<context-param>
+		<param-name>primefaces.UPLOADER</param-name>
+		<param-value>native</param-value>
+ 	</context-param>
+ 	
+ 	<!-- Estágio do Projeto (Desenvolvimento) dispara erros com mais frequência (sensibilidade) para rastrear erro -->
+	<context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
   
 </web-app>

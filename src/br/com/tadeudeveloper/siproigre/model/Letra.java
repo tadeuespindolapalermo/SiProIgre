@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+/**
+ * Entidade Letra do Banco de Dados 
+ */
 @Entity
 public class Letra {
 
@@ -19,7 +22,7 @@ public class Letra {
 	private String autor;
 	
 	@Column(length = 5000, nullable = false)
-	private String conteudo;
+	private String conteudo;		
 
 	public Integer getId() {
 		return id;
@@ -52,10 +55,5 @@ public class Letra {
 	public void setConteudo(String conteudo) {
 		this.conteudo = conteudo;
 	}
-
-	@Override
-	public String toString() {
-		return "Letra [id=" + id + ", titulo=" + titulo + ", autor=" + autor + ", conteudo=" + conteudo + "]";
-	}	
 	
 }

@@ -22,33 +22,30 @@ public class LetraService extends Service {
 	private LogService logService;*/
 
 	/**
-	 * Insere uma nova letra no banco de dados
-	 * @param letra Letra a ser inserida
-	 * @throws ServiceException
+	 * Insere uma nova letra no banco de dados	
 	 */
 	public void inserir(Letra letra) {
 		try {
-			beginTransaction();
+			beginTransaction();		
 			
 			letraDAO.salvar(letra);
-			//logService.log("Letra inserida: " + letra, TipoMensagem.INFO);
+			//logService.log("Letra inserida: " + letra, TipoMensagem.INFO);		
 			
 			commitTransaction();
 		
 		} catch (RuntimeException e) {
-			rollbackTransaction();
+			rollbackTransaction();		
 			throw e;
 		}
+		
 	}
 	
 	/**
-	 * Alter uma letra cadastrada no banco de dados.
-	 * @param letra
-	 * @throws ServiceException
+	 * Altera uma letra cadastrada no banco de dados.	 
 	 */
 	public void alterar(Letra letra) {
 		try {
-			beginTransaction();
+			beginTransaction();		
 			
 			letraDAO.alterar(letra);
 			//logService.log("Letra alterada: " + letra, TipoMensagem.INFO);
@@ -62,9 +59,7 @@ public class LetraService extends Service {
 	}
 	
 	/**
-	 * Exclui uma letra do banco de dados
-	 * @param id Id da letra a ser excluída
-	 * @throws ServiceException
+	 * Exclui uma letra do banco de dados	 
 	 */
 	public void excluir(Integer id) {
 		try {
@@ -83,13 +78,10 @@ public class LetraService extends Service {
 	}
 	
 	/**
-	 * Lê todas as letras cadastradas no banco de dados
-	 * @return Lista de letras cadastradas
-	 * @throws ServiceException
+	 * Lista todas as letras cadastradas no banco de dados	
 	 */
 	public List<Letra> listarLetras() {
 		return letraDAO.listarLetras();
-	}	
-	
+	}		
 	
 }

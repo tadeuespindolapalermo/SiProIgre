@@ -2,15 +2,19 @@ package br.com.tadeudeveloper.siproigre.bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.omnifaces.util.Messages;
 
 import br.com.tadeudeveloper.siproigre.model.Letra;
 import br.com.tadeudeveloper.siproigre.service.LetraService;
 
 /**
- * Bean da tela de cadastro de letras
+ * Bean do CRUD de Letras
  */
 @Named("letras")
 @SessionScoped
@@ -23,106 +27,106 @@ public class LetrasBean extends AbstractBean {
 
 	private List<Letra> letras;
 
-	private Letra letra;
-
-	private boolean alterar;
-
+	private Letra letra;	
+	
+	private boolean alterar = false;	
+	
 	/**
-	 * Obtém a lista de letras
-	 * @return Lista de letras
-	 */
-	public List<Letra> getLetras() {
-		try {
-			if (letras == null) {
-				letras = letraService.listarLetras();
-			}
-			return letras;
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+	 * Inicia a view de Letras listando todas as letras na tabela
+	 */	
+	@PostConstruct
+	public void listar() {
+		try {			
+			letras = letraService.listarLetras();
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar as letras!");
+			erro.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Abre a tela de edição de letra
-	 * @param letra Letra a editar
-	 * @return
-	 */
-	public String alterar(Letra letra) {
-		this.letra = letra;
-		this.alterar = true;
-		return "editar_letra";
-	}
-
-	/**
-	 * Abre a tela de cadastro de letra
-	 * @param letra
-	 * @return
-	 */
-	public String novaLetra() {
-		letra = new Letra();
-		alterar = false;
-		return "editar_letra";
+	 * Prepara o dialog de cadastro de letras para a inserção de uma nova letra
+	 */	
+	public void novo() {
+		try {
+			alterar = false;			
+			letra = new Letra();		
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar criar uma nova letra!");
+			erro.printStackTrace();
+		}
 	}	
 	
 	/**
-	 * Exclui uma letra
-	 * @param letra Letra para excluir
-	 * @return
-	 */
-	public String excluir(Letra letra) {
+	 * Prepara o dialog de cadastro de letras para a atualização de uma letra selecionada
+	 */	
+	public void editarLetra(ActionEvent evento){
 		try {
-			letraService.excluir(letra.getId());
-			letras = null;
-			
-			// Após a exclusão, faz um redirect
-			return "listar_letras?faces-redirect=true";
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+			letra = (Letra) evento.getComponent().getAttributes().get("letraSelecionada");			
+			alterar = true;			
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar uma letra!");
+			erro.printStackTrace();
+		}	
+	}	
+	
+	/**
+	 * Exclui uma letra selecionada	 
+	 */	
+	public void excluir(ActionEvent evento) {
+		try {
+			letra = (Letra) evento.getComponent().getAttributes().get("letraSelecionada");
+
+			letraService.excluir(letra.getId());			
+
+			letras = letraService.listarLetras();
+
+			Messages.addGlobalInfo("Letra removida com sucesso!");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover a letra!");
+			erro.printStackTrace();
 		}
-	}
+	}	
 
 	/**
-	 * Cadastra ou atualiza uma letra (depende do estado da flag 'alterar')
-	 * @return
-	 */
-	public String salvar() {
-		
-		System.out.println(letra.getTitulo());
-		try {
-			if (alterar) {
-				letraService.alterar(letra);
+	 * Insere uma NOVA LETRA se o atributo alterar estiver setado com valor false
+	 * Altera uma LETRA EXISTENTE se o atributo alterar estiver setado com valor true
+	 */	
+	public void salvar() {
+		try {			
+			if (!alterar) {
+				letraService.inserir(letra);			
+				
+				letra = new Letra();			
+
+				letras = letraService.listarLetras();
+
+				Messages.addGlobalInfo("Letra inserida com sucesso!");
 			} else {
-				letraService.inserir(letra);
-			}
-			letra = null;
-			letras = null;
-			alterar = false;
-			return "listar_letras?faces-redirect=true";
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+				letraService.alterar(letra);
+				Messages.addGlobalInfo("Letra alterada com sucesso!");
+			}			
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar a letra!");
+			erro.printStackTrace();
 		}
+	}	
+	
+	// Getters e Setters
+	public List<Letra> getLetras() {
+		return letras;
+	}
+	
+	public void setLetras(List<Letra> letras) {
+		this.letras = letras;
 	}
 
-	public Letra getLetra() {
-		if (letra == null) {
-			letra = new Letra();
-		}
+	public Letra getLetra() {		
 		return letra;
 	}
 
 	public void setLetra(Letra letra) {
 		this.letra = letra;
-	}
-
-	public boolean isAlterar() {
-		return alterar;
-	}
-
-	public void setAlterar(boolean alterar) {
-		this.alterar = alterar;
-	}
+	}			
 
 }
