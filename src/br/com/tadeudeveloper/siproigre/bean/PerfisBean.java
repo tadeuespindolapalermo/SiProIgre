@@ -2,16 +2,19 @@ package br.com.tadeudeveloper.siproigre.bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
+
+import org.omnifaces.util.Messages;
 
 import br.com.tadeudeveloper.siproigre.model.Perfil;
 import br.com.tadeudeveloper.siproigre.service.PerfilService;
 
 /**
- * Bean da tela de cadastro de perfils
+ * Bean da tela de Perfis
  */
 @Named("perfis")
 @SessionScoped
@@ -22,105 +25,108 @@ public class PerfisBean extends AbstractBean {
 	@Inject	
 	private PerfilService perfilService;
 
-	private List<Perfil> perfils;
+	private List<Perfil> perfis;
 
 	private Perfil perfil;
 
 	private boolean alterar;
-
+	
 	/**
-	 * Obtém a lista de perfils
-	 * @return Lista de perfils
-	 */
-	public List<Perfil> getPerfis() {
-		try {
-			if (perfils == null) {
-				perfils = perfilService.listarPerfis();
-			}
-			return perfils;
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+	 * Inicia a view de Perfis listando todos os perfis na tabela
+	 */	
+	@PostConstruct
+	public void listar() {
+		try {			
+			perfis = perfilService.listarPerfis();
+		} catch (RuntimeException erro) {
+			Messages.addGlobalError("Ocorreu um erro ao tentar listar os perfis!");
+			erro.printStackTrace();
 		}
-	}
-
-	/**
-	 * Abre a tela de edição de perfil
-	 * @param perfil Perfil a editar
-	 * @return
-	 */
-	public String alterar(Perfil perfil) {
-		this.perfil = perfil;
-		this.alterar = true;
-		return "editar_perfil";
 	}
 	
 	/**
-	 * Abre a tela de cadastro de perfil
-	 * @return
-	 */
-	public String novoPerfil() {
-		perfil = new Perfil();
-		alterar = false;
-		return "editar_perfil";
-	}
-
-	/**
-	 * Exclui uma perfil
-	 * @param perfil Perfil para excluir
-	 * @return
-	 */
-	public String excluir(Perfil perfil) {
+	 * Prepara o dialog de cadastro de perfis para a inserção de um novo perfil
+	 */	
+	public void novo() {
 		try {
-			perfilService.excluir(perfil.getId());
-			perfils = null;
-			
-			// Após a exclusão, faz um redirect
-			return "listar_perfis?faces-redirect=true";
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+			alterar = false;			
+			perfil = new Perfil();		
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar criar um novo perfil!");
+			erro.printStackTrace();
 		}
-	}
-
+	}	
+	
 	/**
-	 * Cadastra ou atualiza uma perfil (depende do estado da flag 'alterar')
-	 * @return
-	 */
-	public String salvar() {
+	 * Prepara o dialog de cadastro de perfis para a atualização de um perfil selecionado
+	 */	
+	public void editarPerfil(ActionEvent evento){
 		try {
-			if (alterar) {
-				perfilService.alterar(perfil);
+			perfil = (Perfil) evento.getComponent().getAttributes().get("perfilSelecionado");			
+			alterar = true;			
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um perfil!");
+			erro.printStackTrace();
+		}	
+	}	
+	
+	/**
+	 * Exclui um perfil selecionado
+	 */	
+	public void excluir(ActionEvent evento) {
+		try {
+			perfil = (Perfil) evento.getComponent().getAttributes().get("perfilSelecionado");
+
+			perfilService.excluir(perfil.getId());			
+
+			perfis = perfilService.listarPerfis();
+
+			Messages.addGlobalInfo("Perfil removido com sucesso!");
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar remover o perfil!");
+			erro.printStackTrace();
+		}
+	}	
+	
+	/**
+	 * Insere um NOVO PERFIL se o atributo alterar estiver setado com valor false
+	 * Altera um PERFIL EXISTENTE se o atributo alterar estiver setado com valor true
+	 */	
+	public void salvar() {
+		try {			
+			if (!alterar) {
+				perfilService.inserir(perfil);			
+				
+				perfil = new Perfil();			
+
+				perfis = perfilService.listarPerfis();
+
+				Messages.addGlobalInfo("Perfil inserido com sucesso!");
 			} else {
-				perfilService.inserir(perfil);
-			}
-			perfil = null;
-			perfils = null;
-			alterar = false;
-			return "listar_perfis?faces-redirect=true";
-		} catch (Exception e) {
-			handleException(e);
-			return null;
+				perfilService.alterar(perfil);
+				Messages.addGlobalInfo("Perfil alterado com sucesso!");
+			}			
+		} catch (RuntimeException erro) {
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar o perfil!");
+			erro.printStackTrace();
 		}
-	}
-
+	}	
+	
+	// Getters e Setters
 	public Perfil getPerfil() {
-		if (perfil == null) {
-			perfil = new Perfil();
-		}
 		return perfil;
 	}
-
+	
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
 	}
-
-	public boolean isAlterar() {
-		return alterar;
+	
+	public List<Perfil> getPerfis() {
+		return perfis;
 	}
-
-	public void setAlterar(boolean alterar) {
-		this.alterar = alterar;
+	
+	public void setPerfis(List<Perfil> perfis) {
+		this.perfis = perfis;
 	}
-
+	
 }

@@ -22,9 +22,7 @@ public class PerfilService extends Service {
 	private LogService logService;
 
 	/**
-	 * Insere um novo perfil no banco de dados
-	 * @param perfil Perfil a ser inserido
-	 * @throws ServiceException
+	 * Insere um novo perfil no banco de dados	 
 	 */
 	public void inserir(Perfil perfil) {
 		try {
@@ -42,9 +40,7 @@ public class PerfilService extends Service {
 	}
 	
 	/**
-	 * Altera um perfil cadastrado no banco de dados
-	 * @param perfil Perfil a ser alterado
-	 * @throws ServiceException
+	 * Altera um perfil cadastrado no banco de dados	
 	 */
 	public void alterar(Perfil perfil) {
 		try {
@@ -62,9 +58,7 @@ public class PerfilService extends Service {
 	}
 	
 	/**
-	 * Exclui um perfil cadastrado no banco de dados
-	 * @param id ID do perfil a ser excluído
-	 * @throws ServiceException
+	 * Exclui um perfil cadastrado no banco de dados	
 	 */
 	public void excluir(Integer id) {
 		try {
@@ -83,11 +77,10 @@ public class PerfilService extends Service {
 	}
 	
 	/**
-	 * Obtém todos os perfis cadastrados no banco de dados
-	 * @return Lista de perfis cadastrados
-	 * @throws ServiceException
+	 * Lista todos os perfis cadastrados no banco de dados	 
 	 */
 	public List<Perfil> listarPerfis() {
 		return perfilDAO.listarPerfis();
 	}
+	
 }

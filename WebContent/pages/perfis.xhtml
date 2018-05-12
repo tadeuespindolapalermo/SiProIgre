@@ -8,19 +8,19 @@
 	template="/templates/modelo.xhtml">
 
 	<ui:define name="conteudo">
-		<h:form id="formLetras">
-			<p:panel header="Letras - Listagem" style="text-align:center">
+		<h:form id="formPerfis">
+			<p:panel header="Perfis - Listagem" style="text-align:center">
 			
-				<h:panelGroup rendered="#{letras.letras.size() == 0}">					
-					<p>Não existe letras cadastradas!</p>					
+				<h:panelGroup rendered="#{perfis.perfis.size() == 0}">					
+					<p>Não existe perfis cadastrados!</p>					
 				</h:panelGroup>
 				
 				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
-				paginator="true" value="#{letras.letras}" var="letra" rows="5">	
+				paginator="true" value="#{perfis.perfis}" var="perfil" rows="5">	
 			
 					<f:facet name="header">
 						<p:commandButton value="Adicionar" icon="ui-icon-plus"
-							actionListener="#{letras.novo}"
+							actionListener="#{perfis.novo}"
 							oncomplete="PF('dialogo').show();"
 							update=":mensagem :formCadastro:painel">
 							<f:actionListener
@@ -28,32 +28,28 @@
 						</p:commandButton>						
 					</f:facet>			
 				    
-					<p:column headerText="Título">
-						<h:outputText value="#{letra.titulo}" />						
+					<p:column headerText="Nome">
+						<h:outputText value="#{perfil.nome}" />						
 					</p:column>
 		
-					<p:column headerText="Autor">
-						<h:outputText value="#{letra.autor}" />
-					</p:column>				
-		
-					<p:column headerText="Conteúdo">
-						<h:outputText value="#{letra.conteudo}" />
-					</p:column>		
+					<p:column headerText="Descrição">
+						<h:outputText value="#{perfil.descricao}" />
+					</p:column>									
 					
 					<p:column headerText="Opções">
 						<p:commandButton icon="ui-icon-trash"
-							actionListener="#{letras.excluir}"
-							update=":mensagem :formLetras:tabela">
+							actionListener="#{perfis.excluir}"
+							update=":mensagem :formPerfis:tabela">
 							<p:confirm header="Confirmação"
 								message="Tem certeza?" icon="ui-icon-alert" />
-							<f:attribute name="letraSelecionada" value="#{letra}" />
+							<f:attribute name="perfilSelecionado" value="#{perfil}" />
 						</p:commandButton>
 	
 						<p:commandButton icon="ui-icon-pencil"
-							actionListener="#{letras.editarLetra}"
+							actionListener="#{perfis.editarPerfil}"
 							update=":mensagem :formCadastro:painel"
 							oncomplete="PF('dialogo').show();">
-							<f:attribute name="letraSelecionada" value="#{letra}" />
+							<f:attribute name="perfilSelecionado" value="#{perfil}" />
 							<f:actionListener
 								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
 						</p:commandButton>
@@ -69,34 +65,27 @@
 			</p:panel>
 		</h:form>
 		
-		<p:dialog header="Cadastro de Letras" widgetVar="dialogo"
+		<p:dialog header="Cadastro de Perfis" widgetVar="dialogo"
 			draggable="true" resizable="false" modal="true" closable="true">
 			<h:form id="formCadastro" enctype="multipart/form-data">
 				<h:panelGrid id="painel" columns="2">
+				
+					<p:outputLabel for="nome" value="Nome:" />
+					<p:inputText id="nome" maxlength="20" size="15" placeholder="Até 20 caracteres"
+					value="#{perfis.perfil.nome}" required="true"
+					requiredMessage="O campo 'Nome' é obrigatório" />	
 						
-					<p:outputLabel for="titulo" value="Título:" />					
-					<p:inputText id="titulo" maxlength="70" size="25" placeholder="Até 70 caracteres"
-					value="#{letras.letra.titulo}" required="true"
-					requiredMessage="O campo 'Título' é obrigatório" />	
-					
-					<p:outputLabel for="autor" value="Autor:" />
-					<p:inputText id="autor" maxlength="50" size="25" placeholder="Até 50 caracteres"
-					value="#{letras.letra.autor}" required="true"
-					requiredMessage="O campo 'Autor' é obrigatório" />	
-					
-					<p:outputLabel for="conteudo" value="Conteúdo:" />				
-					<p:inputTextarea id="conteudo" placeholder="Até 5000 caracteres"
-					value="#{letras.letra.conteudo}" required="true" rows="10" cols="50"
-					counter="display" maxlength="5000" counterTemplate="{0} caracteres restantes." autoResize="false"
-					requiredMessage="O campo 'Conteúdo' é obrigatório" />					
+					<p:outputLabel for="descricao" value="Descrição:" />
+					<p:inputText id="descricao" maxlength="50" size="15" placeholder="Até 50 caracteres"
+					value="#{perfis.perfil.descricao}" required="true"
+					requiredMessage="O campo 'Descrição' é obrigatório" />								
 				
 				</h:panelGrid>
 				
-				<h:outputText id="display" style="margin-left: 80px;"/>
 				<h:panelGrid columns="2" style="margin-left: 75px; margin-top: 10px;">
 					<p:commandButton value="Salvar"
-						actionListener="#{letras.salvar}"
-						update=":mensagem :formCadastro:painel :formLetras:tabela" />
+						actionListener="#{perfis.salvar}"
+						update=":mensagem :formCadastro:painel :formPerfis:tabela" />
 					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
 				</h:panelGrid>
 				

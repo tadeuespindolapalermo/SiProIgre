@@ -18,9 +18,11 @@
 
 		<div id="cabecalho" class="divCabecalho">
 			<h:form id="formMenu">
-				<p:menubar rendered="#{login.logado == true}">
+				<p:menubar rendered="#{login.logado == true}">					
 					
-					<p:menuitem style="margin-left: 395px;" value="Home" url="home.faces"/>
+					<p:submenu label="Opções" style="margin-left: 395px;">
+						<p:menuitem value="Início" url="home.faces"/>						
+					</p:submenu>
 					
 					<p:submenu label="Administradores">
 						<p:menuitem value="Gerenciar Administradores" url="listar_administradores.faces" disabled="#{login.loginEfetuado.equals('user')}" />						
@@ -28,7 +30,7 @@
 
 					<p:submenu label="Usuários">
 						<p:menuitem value="Gerenciar Usuários" url="listar_usuarios.faces" />
-						<p:menuitem value="Gerenciar Perfis" url="listar_perfis.faces" disabled="#{login.loginEfetuado.equals('user')}" />	
+						<p:menuitem value="Gerenciar Perfis" url="perfis.faces" disabled="#{login.loginEfetuado.equals('user')}" />	
 						<p:menuitem value="Associar Usuário à Perfil" url="usuarios_perfis.faces" disabled="#{login.loginEfetuado.equals('user')}" />					
 					</p:submenu>					
 
