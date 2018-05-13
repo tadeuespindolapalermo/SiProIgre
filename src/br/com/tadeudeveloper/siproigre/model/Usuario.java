@@ -1,6 +1,5 @@
 package br.com.tadeudeveloper.siproigre.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -92,15 +91,6 @@ public class Usuario {
 	
 	public void setLogin(String login) {
 		this.login = login;
-	}
-	
-	@Override
-	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		
-		String dataNascStr = dataNascimento != null ? sdf.format(dataNascimento) : null;
-		
-		return "Usuario [cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascStr + "]";
-	}
+	}	
 	
 }

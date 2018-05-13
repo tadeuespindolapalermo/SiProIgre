@@ -1,6 +1,5 @@
 package br.com.tadeudeveloper.siproigre.model;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -11,47 +10,28 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class Administrador {	
-
-	/**
-	 * CPF do administrador
-	 */	
+		
 	@Id
-	@Column(length = 14, nullable = false, unique = true) // 14 caracteres com máscara
-	private String cpf; 
-	
-	/**
-	 * Nome do administrador
-	 */
+	@Column(length = 14, nullable = false, unique = true) // 14 caracteres com máscara, campo único
+	private String cpf; 	
+
 	@Column(length = 50, nullable = false)
-	private String nome;
+	private String nome;	
 	
-	/**
-	 * Data de nascimento
-	 */
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = false)
-	private Date dataNascimento;
-	
+	private Date dataNascimento;	
 
-	/**
-	 * Nome do usuário para login
-	 */
-	@Column(length = 30, nullable = false, unique = true)
+	@Column(length = 30, nullable = false, unique = true) // campo único
 	private String login;	
-
-	/**
-	 * Senha do administrador
-	 */
-	@Column(length = 8, nullable = false) // apenas 8 caracteres
-	private String senha;
 	
-	/**
-	 * Telefone do administrador
-	 */
+	@Column(length = 8, nullable = false) // máximo até 8 caracteres
+	private String senha;	
+	
 	@Column(length = 16, nullable = false)
 	private String telefone;		
 	
-
+	// Getters e Setters
 	public String getCpf() {
 		return cpf;
 	}
@@ -98,14 +78,6 @@ public class Administrador {
 	
 	public void setLogin(String login) {
 		this.login = login;
-	}
-
-	@Override
-	public String toString() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+	}	
 		
-		String dataNascStr = dataNascimento != null ? sdf.format(dataNascimento) : null;
-		
-		return "Usuario [cpf=" + cpf + ", nome=" + nome + ", dataNascimento=" + dataNascStr + "]";
-	}
 }

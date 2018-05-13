@@ -12,9 +12,7 @@ public class AdministradorDAO extends DAO {
 	private static final long serialVersionUID = -1959666916531247845L;
 
 	/**
-	 * Obtém a lista de administradores cadastrados no banco de dados
-	 * @return Lista de administradores cadastrados
-	 * @throws DAOException
+	 * Lista os administradores cadastrados no banco de dados	
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Administrador> listarAdministradores() {

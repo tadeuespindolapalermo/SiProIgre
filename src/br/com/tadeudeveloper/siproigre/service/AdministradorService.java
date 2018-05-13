@@ -20,9 +20,7 @@ public class AdministradorService extends Service {
 	private LogService logService;
 
 	/**
-	 * Insere um novo administrador no banco de dados
-	 * @param administrador Administrador a ser inserido
-	 * @throws ServiceException
+	 * Insere um novo administrador no banco de dados	
 	 */
 	public void inserir(Administrador administrador) {
 		try {
@@ -40,9 +38,7 @@ public class AdministradorService extends Service {
 	}
 	
 	/**
-	 * Altera um administrador cadastrado no banco de dados.
-	 * @param administrador
-	 * @throws ServiceException
+	 * Altera um administrador cadastrado no banco de dados.	
 	 */
 	public void alterar(Administrador administrador) {
 		try {
@@ -60,9 +56,7 @@ public class AdministradorService extends Service {
 	}
 	
 	/**
-	 * Exclui um administrador do banco de dados
-	 * @param cpf CPF do administrador a ser excluído
-	 * @throws ServiceException
+	 * Exclui um administrador do banco de dados	 
 	 */
 	public void excluir(String cpf) {
 		try {
@@ -81,9 +75,7 @@ public class AdministradorService extends Service {
 	}
 	
 	/**
-	 * Lê todos os administradores cadastrados no banco de dados
-	 * @return Lista de administradores cadastrados
-	 * @throws ServiceException
+	 * Lista todos os administradores cadastrados no banco de dados	
 	 */
 	public List<Administrador> listarAdministradores() {
 		return administradorDAO.listarAdministradores();

@@ -22,7 +22,7 @@ public class Letra {
 	@Column(length = 50, nullable = false)
 	private String autor;
 	
-	@Column(length = 5000, nullable = false, unique = true) // campo único
+	@Column(length = 5000, nullable = false) 
 	private String conteudo;		
 
 	public Integer getId() {
