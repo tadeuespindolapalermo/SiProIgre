@@ -13,15 +13,16 @@ public class Letra {
 
 	@Id
 	@GeneratedValue
+	@Column(nullable = false, unique = true) // campo único
 	private Integer id;
 	
-	@Column(length = 70, nullable = false)
+	@Column(length = 70, nullable = false, unique = true) // campo único
 	private String titulo;
 	
 	@Column(length = 50, nullable = false)
 	private String autor;
 	
-	@Column(length = 5000, nullable = false)
+	@Column(length = 5000, nullable = false, unique = true) // campo único
 	private String conteudo;		
 
 	public Integer getId() {

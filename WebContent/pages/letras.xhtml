@@ -50,7 +50,7 @@
 						</p:commandButton>
 	
 						<p:commandButton icon="ui-icon-pencil"
-							actionListener="#{letras.editarLetra}"
+							actionListener="#{letras.editar}"
 							update=":mensagem :formCadastro:painel"
 							oncomplete="PF('dialogo').show();">
 							<f:attribute name="letraSelecionada" value="#{letra}" />
@@ -103,5 +103,8 @@
 			</h:form>
 			
 		</p:dialog>		
+		<p>
+			<p:link value="Página Inicial" outcome="home" />
+		</p>
 	</ui:define>
 </ui:composition>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/modelo.xhtml">
+
+	<ui:define name="conteudo">
+		<h:form id="formUsuarios">
+			<p:panel header="Usuários - Listagem" style="text-align:center">
+			
+				<h:panelGroup rendered="#{usuarios.usuarios.size() == 0}">					
+					<p>Não existe usuários cadastrados!</p>					
+				</h:panelGroup>
+				
+				<p:dataTable id="tabela" emptyMessage="Nenhum registro encontrado."
+				paginator="true" value="#{usuarios.usuarios}" var="usuario" rows="5">	
+			
+					<f:facet name="header">
+						<p:commandButton value="Adicionar" icon="ui-icon-plus"
+							actionListener="#{usuarios.novo}"
+							oncomplete="PF('dialogo').show();"
+							update=":mensagem :formCadastro:painel">
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>						
+					</f:facet>			
+				    
+					<p:column headerText="CPF">
+						<h:outputText value="#{usuario.cpf}" />						
+					</p:column>
+		
+					<p:column headerText="Nome">
+						<h:outputText value="#{usuario.nome}" />
+					</p:column>	
+					
+					<p:column headerText="Login">
+						<h:outputText value="#{usuario.login}" />
+					</p:column>	
+					
+					<p:column headerText="Telefone">
+						<h:outputText value="#{usuario.telefone}" />
+					</p:column>	
+					
+					<p:column headerText="Senha">
+						<h:outputText value="#{usuario.senha}" />
+					</p:column>				
+		
+					<p:column headerText="Data de Nascimento">
+						<h:outputText value="#{usuario.dataNascimento}" />
+					</p:column>					
+					
+					<p:column headerText="Opções">
+						<p:commandButton icon="ui-icon-trash"
+							actionListener="#{usuarios.excluir}"
+							update=":mensagem :formUsuarios:tabela">
+							<p:confirm header="Confirmação"
+								message="Tem certeza?" icon="ui-icon-alert" />
+							<f:attribute name="usuarioSelecionado" value="#{usuario}" />
+						</p:commandButton>
+	
+						<p:commandButton icon="ui-icon-pencil"
+							actionListener="#{usuarios.editar}"
+							update=":mensagem :formCadastro:painel"
+							oncomplete="PF('dialogo').show();">
+							<f:attribute name="usuarioSelecionado" value="#{usuario}" />
+							<f:actionListener
+								type="org.omnifaces.eventlistener.ResetInputAjaxActionListener" />
+						</p:commandButton>
+					</p:column>												
+				</p:dataTable>
+				
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>				
+			</p:panel>
+		</h:form>
+		
+		<p:dialog header="Cadastro de Usuários" widgetVar="dialogo"
+			draggable="true" resizable="false" modal="true" closable="true">
+			<h:form id="formCadastro" enctype="multipart/form-data">
+				<h:panelGrid id="painel" columns="2">
+						
+					<p:outputLabel for="cpf" value="CPF:" />					
+					<p:inputMask id="cpf" disabled="#{usuarios.alterar}" mask="999.999.999-99" size="11" placeholder="999.999.999-99"
+					value="#{usuarios.usuario.cpf}" required="true" requiredMessage="O campo 'CPF' é obrigatório" />				
+				
+					<p:outputLabel for="nome" value="Nome:"/>
+					<p:inputText id="nome" maxlength="50" size="25" placeholder="Até 50 caracteres"
+					value="#{usuarios.usuario.nome}" required="true"
+					requiredMessage="O campo 'Nome' é obrigatório" />
+					
+					<p:outputLabel for="telefone" value="Telefone:"/>
+					<p:inputMask id="telefone" maxlength="50" size="25" placeholder="(99) 9 9999-9999"
+					value="#{usuarios.usuario.telefone}" required="true" mask="(99) 9 9999-9999"
+					requiredMessage="O campo 'Telefone' é obrigatório" />					
+					
+					<p:outputLabel for="login" value="Login:" />
+					<p:inputText id="login" maxlength="30" size="25" placeholder="Até 30 caracteres"
+					value="#{usuarios.usuario.login}" required="true"
+					requiredMessage="O campo 'Login' é obrigatório" />				
+					
+					<p:outputLabel for="senha" value="Senha:" />
+					<p:password id="senha" maxlength="8" size="25" placeholder="Até 8 caracteres"
+					value="#{usuarios.usuario.senha}" required="true"
+					requiredMessage="O campo 'Senha' é obrigatório" />	
+				
+					<p:outputLabel for="dataNascimento" value="Data de Nascimento:" />
+					<p:inputMask id="dataNascimento" value="#{usuarios.usuario.dataNascimento}" placeholder="99/99/9999" 
+					maxlength="10" size="8" required="true" requiredMessage="O campo 'Data de Nascimento' é obrigatório" mask="99/99/9999">					
+						<f:convertDateTime pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo"/>
+					</p:inputMask>					
+				
+				</h:panelGrid>				
+				
+				<h:panelGrid columns="2" style="margin-left: 75px; margin-top: 10px;">
+					<p:commandButton value="Salvar"
+						actionListener="#{usuarios.salvar}"
+						update=":mensagem :formCadastro:painel :formUsuarios:tabela" />
+					<p:commandButton value="Fechar" oncomplete="PF('dialogo').hide();" />
+				</h:panelGrid>
+				
+			</h:form>
+			
+		</p:dialog>		
+		<p>
+			<p:link value="Página Inicial" outcome="home" />
+		</p>
+	</ui:define>
+</ui:composition>

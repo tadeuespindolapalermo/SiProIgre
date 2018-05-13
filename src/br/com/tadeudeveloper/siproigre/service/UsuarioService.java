@@ -28,9 +28,7 @@ public class UsuarioService extends Service {
 	private LogService logService;
 
 	/**
-	 * Insere um novo usuário no banco de dados
-	 * @param usuario Usuario a ser inserido
-	 * @throws ServiceException
+	 * Insere um novo usuário no banco de dados	
 	 */
 	public void inserir(Usuario usuario) {
 		try {
@@ -48,9 +46,7 @@ public class UsuarioService extends Service {
 	}
 	
 	/**
-	 * Alter um usuário cadastrado no banco de dados.
-	 * @param usuario
-	 * @throws ServiceException
+	 * Alter um usuário cadastrado no banco de dados.	
 	 */
 	public void alterar(Usuario usuario) {
 		try {
@@ -68,9 +64,7 @@ public class UsuarioService extends Service {
 	}
 	
 	/**
-	 * Exclui um usuário do banco de dados
-	 * @param cpf CPF do usuário a ser excluído
-	 * @throws ServiceException
+	 * Exclui um usuário do banco de dados	
 	 */
 	public void excluir(String cpf) {
 		try {
@@ -89,29 +83,21 @@ public class UsuarioService extends Service {
 	}
 	
 	/**
-	 * Lê todos os usuários cadastrados no banco de dados
-	 * @return Lista de usuários cadastrados
-	 * @throws ServiceException
+	 * Lista todos os usuários cadastrados no banco de dados	
 	 */
 	public List<Usuario> listarUsuarios() {
 		return usuarioDAO.listarUsuarios();
 	}
 	
 	/**
-	 * Obtém todos os usuários associados a um perfil específico
-	 * @param perfilId ID do perfil cujos usuários serão retornados
-	 * @return Lista de usuários
-	 * @throws ServiceException
+	 * Obtém todos os usuários associados a um perfil específico	
 	 */
 	public List<Usuario> obterUsuariosPerfil(Integer perfilId) {
 		return usuarioDAO.obterUsuariosPerfil(perfilId);
 	}
 	
 	/**
-	 * Associa usuários a um perfil
-	 * @param cpf CPF dos usuários
-	 * @param perfilId ID do perfil para associar os usuários
-	 * @throws ServiceException
+	 * Associa determinado usuário à um perfil	
 	 */
 	public void associarUsuariosPerfil(String[] cpfs, Integer perfilId) {
 		try {
@@ -141,4 +127,5 @@ public class UsuarioService extends Service {
 			throw e;
 		}
 	}
+	
 }

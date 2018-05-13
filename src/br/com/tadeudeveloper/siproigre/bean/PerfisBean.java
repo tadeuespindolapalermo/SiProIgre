@@ -60,12 +60,12 @@ public class PerfisBean extends AbstractBean {
 	/**
 	 * Prepara o dialog de cadastro de perfis para a atualização de um perfil selecionado
 	 */	
-	public void editarPerfil(ActionEvent evento){
+	public void editar(ActionEvent evento){
 		try {
 			perfil = (Perfil) evento.getComponent().getAttributes().get("perfilSelecionado");			
 			alterar = true;			
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar um perfil!");
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar o perfil!");
 			erro.printStackTrace();
 		}	
 	}	
@@ -94,19 +94,22 @@ public class PerfisBean extends AbstractBean {
 	 */	
 	public void salvar() {
 		try {			
-			if (!alterar) {
+			if (!alterar) {					
+					
 				perfilService.inserir(perfil);			
 				
-				perfil = new Perfil();			
+				perfil = new Perfil();
 
 				perfis = perfilService.listarPerfis();
 
 				Messages.addGlobalInfo("Perfil inserido com sucesso!");
 			} else {
 				perfilService.alterar(perfil);
+				perfis = perfilService.listarPerfis();
 				Messages.addGlobalInfo("Perfil alterado com sucesso!");
 			}			
-		} catch (RuntimeException erro) {
+		} catch (RuntimeException erro) {			
+			perfis = perfilService.listarPerfis();
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar o perfil!");
 			erro.printStackTrace();
 		}

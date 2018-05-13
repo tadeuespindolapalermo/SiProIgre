@@ -46,7 +46,7 @@
 						</p:commandButton>
 	
 						<p:commandButton icon="ui-icon-pencil"
-							actionListener="#{perfis.editarPerfil}"
+							actionListener="#{perfis.editar}"
 							update=":mensagem :formCadastro:painel"
 							oncomplete="PF('dialogo').show();">
 							<f:attribute name="perfilSelecionado" value="#{perfil}" />
@@ -92,5 +92,8 @@
 			</h:form>
 			
 		</p:dialog>		
+		<p>
+			<p:link value="Página Inicial" outcome="home" />
+		</p>	
 	</ui:define>
 </ui:composition>

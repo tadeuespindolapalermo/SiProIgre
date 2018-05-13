@@ -11,9 +11,10 @@ public class Perfil {
 	// Atributos da entidade	
 	@Id
 	@GeneratedValue
+	@Column(nullable = false, unique = true) // campo único
 	private Integer id;	
 	
-	@Column(length = 20, nullable = false)
+	@Column(length = 20, nullable = false, unique = true) // campo único
 	private String nome;	
 	
 	@Column(length = 50, nullable = false)

@@ -60,12 +60,12 @@ public class LetrasBean extends AbstractBean {
 	/**
 	 * Prepara o dialog de cadastro de letras para a atualização de uma letra selecionada
 	 */	
-	public void editarLetra(ActionEvent evento){
+	public void editar(ActionEvent evento){
 		try {
 			letra = (Letra) evento.getComponent().getAttributes().get("letraSelecionada");			
 			alterar = true;			
 		} catch (RuntimeException erro) {
-			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar uma letra!");
+			Messages.addFlashGlobalError("Ocorreu um erro ao tentar selecionar a letra!");
 			erro.printStackTrace();
 		}	
 	}	
@@ -104,9 +104,11 @@ public class LetrasBean extends AbstractBean {
 				Messages.addGlobalInfo("Letra inserida com sucesso!");
 			} else {
 				letraService.alterar(letra);
+				letras = letraService.listarLetras();
 				Messages.addGlobalInfo("Letra alterada com sucesso!");
 			}			
 		} catch (RuntimeException erro) {
+			letras = letraService.listarLetras();
 			Messages.addFlashGlobalError("Ocorreu um erro ao tentar salvar a letra!");
 			erro.printStackTrace();
 		}

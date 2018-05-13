@@ -23,14 +23,14 @@ public class LoginBean extends UsuariosBean {
 		this.logado = false;
 	}		
 	
-	public String logar() {
+	public String logar() {		
 		if (getUsuario().getLogin().equals("user") && getUsuario().getSenha().equals("user")) {
-			setLogado(true);
 			setLoginEfetuado("user");
+			setLogado(true);			
 			return "home?faces-redirect=true";
 		} else if (getUsuario().getLogin().equals("admin") && getUsuario().getSenha().equals("admin")) {
-			setLogado(true);
 			setLoginEfetuado("admin");
+			setLogado(true);			
 			return "home?faces-redirect=true";
 		} else {
 			Messages.addGlobalError("Login ou senha inválido(s)!");
