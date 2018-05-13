@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.Serializable;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -17,7 +16,7 @@ import org.primefaces.model.UploadedFile;
 
 @Named
 @RequestScoped
-public class UploadsBean implements Serializable {	
+public class UploadsBean extends AbstractBean {	
 	
 	private static final long serialVersionUID = -3197155705114283255L;
 	
@@ -38,6 +37,7 @@ public class UploadsBean implements Serializable {
 	}
 	
 	public void onUpload(FileUploadEvent event) {
+		
 		UploadedFile uploadedFile = event.getFile();
 		String path = "/home/tadeu/eclipse-workspace/java-ee/SiProIgre/WebContent/uploads";
 		copyFileToDir(uploadedFile, path);
@@ -46,7 +46,7 @@ public class UploadsBean implements Serializable {
 		long size = uploadedFile.getSize();
 		
 		FacesMessage msg = new FacesMessage("O arquivo " + name + " foi enviado. Tamanho " + size + " bytes.");
-		FacesContext.getCurrentInstance().addMessage(null, msg);
+		FacesContext.getCurrentInstance().addMessage(null, msg);	
 	}	
 	
 	public UploadedFile getFile() {
@@ -58,6 +58,7 @@ public class UploadsBean implements Serializable {
 	}
 
 	private static void copyFileToDir(UploadedFile file, String dir) {
+		
 		if (file == null) {
 			return;
 		}
@@ -91,5 +92,6 @@ public class UploadsBean implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
 }
 
